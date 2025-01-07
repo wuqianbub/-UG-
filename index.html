@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UG Design Studio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">UG</div>
+        <div class="nav-links">
+            <a href="#work">Work</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <main class="hero-section">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    <span class="title-wrapper">
+                        设计
+                        <div class="emoji-popup title-emoji">
+                            <img src="images/emoji2.gif" alt="表情" class="emoji">
+                        </div>
+                    </span>
+                    引领未来<br>创造无限可能
+                </h1>
+                <p>
+                    <span class="description-line">UG年度作品盘点，回顾2024年的UG设计作品。</span>
+                    <span class="description-line">包含：<span class="highlight">网站设计</span>、<span class="highlight">本地化设计</span>、<span class="highlight">飞书大使</span>、<span class="highlight">飞行社</span>等项目</span>
+                </p>
+                <div class="hero-cta">
+                    <button class="cta-button">
+                        <span class="button-text">查看作品</span>
+                        <span class="button-text-hover">查看全部作品</span>
+                    </button>
+                    <button class="think-button">
+                        给UG提需
+                        <div class="emoji-popup">
+                            <img src="images/emoji.gif" alt="思考表情" class="emoji">
+                        </div>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="hero-slider">
+                <div class="slider-container">
+                    <div class="slide active">
+                        <img src="images/case1.png" alt="Lark 本地化设计">
+                        <div class="slide-info">
+                            <span class="slide-category">UI Design</span>
+                            <h3>Lark 日本本地化设计</h3>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="images/case2.png" alt="Lark 故事线设计">
+                        <div class="slide-info">
+                            <span class="slide-category">UX Design</span>
+                            <h3>产品故事线优化</h3>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <img src="images/case3.png" alt="Lark 设计系统">
+                        <div class="slide-info">
+                            <span class="slide-category">Design System</span>
+                            <h3>设计系统构建</h3>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-nav">
+                    <div class="nav-dots">
+                        <div class="dot active" data-index="0"></div>
+                        <div class="dot" data-index="1"></div>
+                        <div class="dot" data-index="2"></div>
+                    </div>
+                    <div class="nav-arrows">
+                        <button class="arrow prev">←</button>
+                        <button class="arrow next">→</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="team-section">
+        <h2 class="team-title">
+            <span class="highlight-text">UG</span>的设计师们
+        </h2>
+        <div class="team-container">
+            <div class="team-slider">
+                <div class="team-slide active">
+                    <div class="team-grid">
+                        <!-- 第一页的8个卡片 -->
+                        <div class="team-card special-card">
+                            <div class="member-avatar">
+                                <img src="images/avatars/1.jpg" alt="设计师泡泡" class="profile-img">
+                                <img src="images/videos/samoyed2.gif" alt="萨摩耶" class="hover-gif">
+                            </div>
+                            <div class="member-info">
+                                <h3>泡泡</h3>
+                                <p>资深UI设计师，擅长设计系统搭建，热爱研究用户体验</p>
+                            </div>
+                        </div>
+
+                        <div class="team-card">
+                            <div class="member-avatar">
+                                <img src="images/avatars/2.jpg" alt="设计师明慧">
+                            </div>
+                            <div class="member-info">
+                                <h3>明慧</h3>
+                                <p>动效设计专家，让界面栩栩如生是我的追求</p>
+                            </div>
+                        </div>
+
+                        <div class="team-card">
+                            <div class="member-avatar">
+                                <img src="images/avatars/3.jpg" alt="设计师小华">
+                            </div>
+                            <div class="member-info">
+                                <h3>小华</h3>
+                                <p>视觉设计师，色彩搭配专家，追求像素级的完美</p>
+                            </div>
+                        </div>
+
+                        <div class="team-card">
+                            <div class="member-avatar">
+                                <img src="images/avatars/4.jpg" alt="设计师小李">
+                            </div>
+                            <div class="member-info">
+                                <h3>小李</h3>
+                                <p>交互设计师，让复杂的问题变得简单是我的专长</p>
+                            </div>
+                        </div>
+
+                        <div class="team-card">
+                            <div class="member-avatar">
+                                <img src="images/avatars/5.jpg" alt="设计师小张">
+                            </div>
+                            <div class="member-info">
+                                <h3>小张</h3>
+                                <p>产品设计师，用设计解决商业问题是我的日常</p>
+                            </div>
+                        </div>
+
+                        <div class="team-card">
+                            <div class="member-avatar">
+                                <img src="images/avatars/6.jpg" alt="设计师小陈">
+                            </div>
+                            <div class="member-info">
+                                <h3>小陈</h3>
+                                <p>插画设计师，为界面注入生命和趣味是我的工作</p>
+                            </div>
+                        </div>
+
+                        <div class="team-card">
+                            <div class="member-avatar">
+                                <img src="images/avatars/7.jpg" alt="设计师小王">
+                            </div>
+                            <div class="member-info">
+                                <h3>小王</h3>
+                                <p>品牌设计师，创造独特的视觉语言是我的专长</p>
+                            </div>
+                        </div>
+
+                        <div class="team-card">
+                            <div class="member-avatar">
+                                <img src="images/avatars/8.jpg" alt="设计师小林">
+                            </div>
+                            <div class="member-info">
+                                <h3>小林</h3>
+                                <p>用研专家，深入理解用户需求是我的日常工作</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-slide">
+                    <div class="team-grid">
+                        <div class="team-card">
+                            <div class="member-avatar">
+                                <img src="images/avatars/9.jpg" alt="设计师小赵">
+                            </div>
+                            <div class="member-info">
+                                <h3>小赵</h3>
+                                <p>动效设计师，让界面充满生命力是我的使命</p>
+                            </div>
+                        </div>
+
+                        <div class="team-card">
+                            <div class="member-avatar">
+                                <img src="images/avatars/10.jpg" alt="设计师小钱">
+                            </div>
+                            <div class="member-info">
+                                <h3>小钱</h3>
+                                <p>用户体验设计师，专注于提升产品易用性</p>
+                            </div>
+                        </div>
+
+                        <div class="team-card">
+                            <div class="member-avatar">
+                                <img src="images/avatars/11.jpg" alt="设计师小孙">
+                            </div>
+                            <div class="member-info">
+                                <h3>小孙</h3>
+                                <p>创意总监，善于把控产品设计方向</p>
+                            </div>
+                        </div>
+
+                        <div class="team-card">
+                            <div class="member-avatar">
+                                <img src="images/avatars/12.jpg" alt="设计师小李">
+                            </div>
+                            <div class="member-info">
+                                <h3>小李</h3>
+                                <p>设计研究员，深入研究用户行为和需求</p>
+                            </div>
+                        </div>
+
+                        <div class="team-card">
+                            <div class="member-avatar">
+                                <img src="images/avatars/13.jpg" alt="设计师小周">
+                            </div>
+                            <div class="member-info">
+                                <h3>小周</h3>
+                                <p>设计开发，让设计和代码完美结合</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 导航控制 -->
+            <div class="team-nav">
+                <div class="team-dots">
+                    <div class="team-dot active" data-index="0"></div>
+                    <div class="team-dot" data-index="1"></div>
+                </div>
+                <div class="team-arrows">
+                    <button class="team-arrow prev">←</button>
+                    <button class="team-arrow next">→</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="game-section">
+        <h2 class="game-title">
+            设计师 <span class="highlight-text">PK</span> 大赛
+        </h2>
+        
+        <div class="game-container">
+            <div class="player player-left">
+                <div class="player-avatar">
+                    <img src="images/avatars/1.jpg" alt="玩家1">
+                </div>
+                <h3 class="player-name">泡泡</h3>
+                <div class="score">0</div>
+            </div>
+
+            <div class="game-info">
+                <div class="timer">10</div>
+                <button class="start-game">开始游戏</button>
+                <div class="vs">VS</div>
+                <div class="game-area">
+                    <div class="basket"></div>
+                    <div class="ball" draggable="true"></div>
+                </div>
+            </div>
+
+            <div class="player player-right">
+                <div class="player-avatar">
+                    <img src="images/avatars/2.jpg" alt="玩家2">
+                </div>
+                <h3 class="player-name">明慧</h3>
+                <div class="score">0</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html> 
