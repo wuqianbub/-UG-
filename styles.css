@@ -1,0 +1,1944 @@
+:root {
+    --primary-color: #1A1A1A;
+    --text-color: #666666;
+    --background-color: #FFFFFF;
+    --accent-color: #3B82F6;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--background-color);
+    color: var(--primary-color);
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+/* 导航栏 */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.nav-links {
+    display: flex;
+    gap: 3rem;
+}
+
+.nav-links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+/* 首页英雄区 */
+.hero-section {
+    min-height: 100vh;
+    padding: 8rem 4rem 4rem;
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    display: flex;
+    gap: 6rem;
+    width: 100%;
+}
+
+/* 左侧文字区域 */
+.hero-text {
+    flex: 1;
+    max-width: 540px;
+    padding-top: 6rem;
+    position: relative;
+}
+
+.hero-text h1 {
+    font-size: 4.2rem;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.hero-text p {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    margin-bottom: 3rem;
+    opacity: 0.8;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.cta-button {
+    position: relative;
+    padding: 1.25rem 3.5rem;
+    min-width: 180px;
+    height: 64px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+        135deg,
+        #0ea5ea 0%,
+        #6366f1 25%,
+        #0bd1d1 50%,
+        #8b5cf6 75%,
+        #0ea5ea 100%
+    );
+    background-size: 300% 300%;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 
+        0 0 30px rgba(14, 165, 234, 0.3),
+        0 0 60px rgba(99, 102, 241, 0.2),
+        0 0 100px rgba(139, 92, 246, 0.1);
+}
+
+/* 修改涟漪效果 */
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.3) 0%,
+        transparent 70%
+    );
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: -1;
+    transition: all 0.4s ease-out;
+    pointer-events: none;
+}
+
+/* 移除之前的 ripple 类相关样式 */
+.cta-button.ripple::before {
+    display: none;
+}
+
+.cta-button:hover::before {
+    width: 200%;
+    height: 200%;
+    opacity: 0;
+    transition: all 0.6s ease-out;
+}
+
+/* 渐变动画 */
+.cta-button {
+    animation: gradientFlow 8s ease infinite;
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+/* 点击效果 */
+.cta-button:active {
+    transform: scale(0.98);
+}
+
+/* 光环效果 */
+.cta-button::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 50px;
+    background: linear-gradient(
+        135deg,
+        #0ea5ea,
+        #6366f1,
+        #0bd1d1,
+        #8b5cf6
+    );
+    background-size: 300% 300%;
+    opacity: 0;
+    z-index: -2;
+    animation: gradientFlow 8s ease infinite;
+}
+
+/* 悬停效果 */
+.cta-button:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.1);
+    box-shadow: 
+        0 0 30px rgba(14, 165, 234, 0.3),
+        0 0 60px rgba(99, 102, 241, 0.2),
+        0 0 90px rgba(139, 92, 246, 0.1);
+}
+
+/* 点击涟漪效果 */
+.cta-button.ripple::before {
+    content: '';
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.5;
+    }
+    100% {
+        width: 500px;
+        height: 500px;
+        opacity: 0;
+    }
+}
+
+/* 右侧轮播区域 */
+.hero-slider {
+    flex: 1;
+    position: relative;
+    padding-top: 2rem;
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 550px;
+    overflow: visible;
+    border-radius: 32px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+    perspective: 1000px;
+}
+
+.slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: perspective(1000px) rotateY(10deg) translateX(100px);
+    transform-origin: left center;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+    backface-visibility: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-radius: 32px;
+    overflow: hidden;
+}
+
+.slide.active {
+    opacity: 1;
+    transform: perspective(1000px) rotateY(0) translateX(0);
+    pointer-events: auto;
+}
+
+.slide.prev {
+    opacity: 0;
+    transform: perspective(1000px) rotateY(-10deg) translateX(-100px);
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide-info {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 2.5rem;
+    color: white;
+    z-index: 2;
+}
+
+.slide::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+    pointer-events: none;
+}
+
+.slide-category {
+    display: inline-block;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+}
+
+.slide-info h3 {
+    font-size: 2rem;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* 轮播导航 */
+.slider-nav {
+    position: absolute;
+    bottom: -2.5rem;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.nav-dots {
+    display: flex;
+    gap: 1rem;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #DDD;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.dot.active {
+    background: var(--primary-color);
+    transform: scale(1.2);
+}
+
+.nav-arrows {
+    display: flex;
+    gap: 1rem;
+}
+
+.arrow {
+    padding: 0.75rem 1.25rem;
+    border: 1px solid var(--primary-color);
+    background: transparent;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.arrow:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* 响应式设计 */
+@media (max-width: 1400px) {
+    .slider-container {
+        height: 500px;
+        margin-bottom: 2.5rem;
+    }
+
+    .hero-content {
+        gap: 4rem;
+    }
+
+    .hero-section {
+        padding: 7rem 4rem 3rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .hero-content {
+        flex-direction: column;
+    }
+
+    .hero-text {
+        max-width: 100%;
+        text-align: center;
+        padding-top: 5rem;
+    }
+
+    .hero-cta {
+        justify-content: center;
+    }
+
+    .slider-container {
+        height: 450px;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1.5rem 2rem;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero-section {
+        padding: 5rem 2rem 2rem;
+    }
+
+    .hero-text h1 {
+        font-size: 2.8rem;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .slider-container {
+        height: 350px;
+        margin-bottom: 2rem;
+    }
+
+    .slide-info {
+        bottom: 1.5rem;
+        left: 1.5rem;
+    }
+
+    .slide-info h3 {
+        font-size: 1.5rem;
+    }
+
+    .cta-button {
+        font-size: 0.95rem;
+        padding: 1rem 1.8rem;
+    }
+
+    .slider-nav {
+        bottom: -2rem;
+    }
+
+    .hero-text p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        margin-bottom: 2.5rem;
+        text-align: left;
+    }
+}
+
+/* 思考按钮样式 */
+.think-button {
+    position: relative;
+    padding: 1.25rem 3.5rem;
+    height: 64px;
+    min-width: 140px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 表情包弹出框 */
+.emoji-popup {
+    position: absolute;
+    top: -70px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    background: transparent;
+    padding: 8px;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    pointer-events: none;
+    z-index: 10;
+    width: 80px;
+    height: 80px;
+}
+
+/* 表情图片或文字 */
+.emoji {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.emoji-text {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+/* 添加小三角 */
+.emoji-popup::after {
+    display: none;
+}
+
+/* 悬停效果 */
+.think-button:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.think-button:hover .emoji-popup {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+    top: -80px;
+    animation: bounce 1.2s ease infinite;
+}
+
+/* 点击效果 */
+.think-button:active {
+    transform: translateY(1px);
+}
+
+/* 动画效果 */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateX(-50%) scale(1) rotate(-5deg);
+    }
+    50% {
+        transform: translateX(-50%) scale(1.1) rotate(5deg);
+    }
+}
+
+.think-button:hover .emoji-popup {
+    animation: bounce 1.2s ease infinite;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .hero-cta {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .think-button {
+        font-size: 1rem;
+        padding: 0.875rem 1.75rem;
+    }
+
+    .emoji-popup {
+        width: 60px;
+        height: 60px;
+        top: -60px;
+    }
+
+    .emoji {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* 标题文字渐变效果 */
+.title-wrapper {
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(
+        135deg,
+        #0ea5ea 0%,
+        #6366f1 50%,
+        #8b5cf6 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease;
+    font-weight: 900;
+}
+
+/* 标题悬停效果 */
+.title-wrapper:hover {
+    background-position: right center;
+}
+
+/* 标题表情包样式 */
+.title-wrapper .emoji-popup {
+    position: absolute;
+    top: -70px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    background: transparent;
+    padding: 8px;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    pointer-events: none;
+    z-index: 10;
+    width: 70px;
+    height: 70px;
+}
+
+.title-wrapper:hover .emoji-popup {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+    top: -80px;
+    animation: titleBounce 1.2s ease infinite;
+}
+
+/* 标题表情动画 */
+@keyframes titleBounce {
+    0%, 100% {
+        transform: translateX(-50%) scale(1) rotate(-5deg);
+    }
+    50% {
+        transform: translateX(-50%) scale(1.1) rotate(5deg);
+    }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .title-wrapper .emoji-popup {
+        width: 60px;
+        height: 60px;
+        top: -60px;
+    }
+}
+
+/* 区分标题表情和按钮表情的样式 */
+.title-emoji {
+    top: -80px;
+    width: 70px;
+    height: 70px;
+}
+
+.title-emoji .emoji {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.title-wrapper:hover .emoji-popup {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+    top: -80px;
+    animation: titleBounce 1.2s ease infinite;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .title-emoji {
+        width: 60px;
+        height: 60px;
+        top: -60px;
+    }
+}
+
+/* 更新按钮文字切换效果 */
+.cta-button {
+    position: relative;
+    padding: 1.25rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    /* 其他样式保持不变 */
+}
+
+/* 添加文字切换效果 */
+.button-text,
+.button-text-hover {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    width: auto;
+}
+
+.button-text {
+    opacity: 1;
+}
+
+.button-text-hover {
+    opacity: 0;
+}
+
+.cta-button:hover .button-text {
+    opacity: 0;
+}
+
+.cta-button:hover .button-text-hover {
+    opacity: 1;
+}
+
+/* 调整移动端样式 */
+@media (max-width: 768px) {
+    .cta-button {
+        font-size: 0.95rem;
+        padding: 1rem 1.8rem;
+    }
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .cta-button,
+    .think-button {
+        height: 56px;
+        padding: 1rem 3rem;
+        font-size: 1.1rem;
+    }
+}
+
+/* 优化描述文案样式 */
+.hero-text p {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    margin-bottom: 3rem;
+    opacity: 0.8;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.description-line {
+    display: block;
+}
+
+.highlight {
+    color: var(--primary-color);
+    font-weight: 500;
+    opacity: 1;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .hero-text p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        margin-bottom: 2.5rem;
+        text-align: left; /* 移动端左对齐 */
+    }
+}
+
+/* 团队展示区域样式 */
+.team-section {
+    min-height: 100vh;
+    padding: 8rem 4rem 6rem;
+    background: var(--background-color);
+}
+
+.team-container {
+    position: relative;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+/* 网格布局 */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+/* 团队卡片样式 */
+.team-card {
+    background: white;
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+    transform-origin: center;
+    z-index: 1;
+}
+
+/* 增强悬停效果 */
+.team-card:hover {
+    transform: translateY(-10px) scale(1.1);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+/* 发光边框效果 */
+.team-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        rgba(14, 165, 234, 0.1),
+        rgba(99, 102, 241, 0.1),
+        rgba(11, 209, 209, 0.1),
+        rgba(139, 92, 246, 0.1)
+    );
+    border-radius: 24px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.team-card:hover::before {
+    opacity: 1;
+}
+
+/* 头像动画效果 */
+.member-avatar {
+    width: 140px;  /* 增加头像尺寸 */
+    height: 140px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.member-avatar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        rgba(14, 165, 234, 0.1),
+        rgba(99, 102, 241, 0.1)
+    );
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.team-card:hover .member-avatar::after {
+    opacity: 1;
+}
+
+.member-avatar img,
+.member-avatar .hover-gif {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.team-card:hover .member-avatar img {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* 信息动画效果 */
+.member-info {
+    text-align: center;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.member-info h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.member-info p {
+    font-size: 1rem;
+    color: var(--text-color);
+    line-height: 1.5;
+    opacity: 0.8;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.team-card:hover .member-info h3 {
+    transform: translateY(-5px);
+    background: linear-gradient(
+        45deg,
+        rgba(14, 165, 234, 0.8),
+        rgba(99, 102, 241, 0.8)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.team-card:hover .member-info p {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* 添加浮动粒子效果 */
+.team-card::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    top: -50px;
+    right: -50px;
+    opacity: 0;
+    transition: all 0.5s ease;
+    transform: scale(0);
+}
+
+.team-card:hover::after {
+    opacity: 1;
+    transform: scale(1);
+    animation: floatParticle 3s infinite ease-in-out;
+}
+
+@keyframes floatParticle {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(-20px, 20px) scale(1.2);
+    }
+}
+
+/* 添加卡片出现动画 */
+.team-slide {
+    display: none;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.5s ease;
+}
+
+.team-slide.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.team-slide.active .team-card {
+    animation: cardAppear 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation-delay: calc(var(--card-index) * 0.1s);
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+@keyframes cardAppear {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 轮播控制 */
+.team-nav {
+    position: absolute;
+    bottom: -3rem;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.team-dots {
+    display: flex;
+    gap: 1rem;
+}
+
+.team-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #DDD;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.team-dot.active {
+    background: var(--primary-color);
+    transform: scale(1.2);
+}
+
+/* 响应式调整 */
+@media (max-width: 1200px) {
+    .team-grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .team-section {
+        padding: 4rem 2rem;
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .member-avatar {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+/* 添加团队标题样式 */
+.team-title {
+    text-align: center;
+    font-size: 3.2rem;
+    font-weight: 800;
+    margin-bottom: 4rem;
+    letter-spacing: -0.02em;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: titleAppear 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.team-title .highlight-text {
+    background: linear-gradient(
+        135deg,
+        #0ea5ea 0%,
+        #6366f1 50%,
+        #8b5cf6 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: gradientFlow 8s ease infinite;
+}
+
+@keyframes titleAppear {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 调整团队区域的内边距 */
+.team-section {
+    min-height: 100vh;
+    padding: 8rem 4rem 6rem;
+    background: var(--background-color);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .team-title {
+        font-size: 2.4rem;
+        margin-bottom: 3rem;
+    }
+}
+
+/* 特殊卡片样式 */
+.special-card {
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.special-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 24px;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 182, 193, 0.6),  /* 柔和的粉色 */
+        rgba(135, 206, 235, 0.6)   /* 柔和的天蓝色 */
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.special-card:hover::before {
+    opacity: 1;
+}
+
+/* 视频悬停效果 */
+.special-card .member-avatar {
+    position: relative;
+    overflow: hidden;
+}
+
+.special-card .hover-gif {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 50%;
+}
+
+.special-card:hover .hover-gif {
+    opacity: 1;
+}
+
+.special-card:hover .profile-img {
+    opacity: 0;
+}
+
+/* 头像悬停效果 */
+.team-card:hover .member-avatar {
+    width: 160px;  /* 悬停时进一步增大 */
+    height: 160px;
+    transform: translateY(-5px);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .member-avatar {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .team-card:hover .member-avatar {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+/* 游戏区域样式 */
+.game-section {
+    min-height: 100vh;
+    padding: 8rem 4rem;
+    background: linear-gradient(135deg, 
+        rgba(14, 165, 233, 0.1) 0%,
+        rgba(99, 102, 241, 0.1) 50%,
+        rgba(139, 92, 246, 0.1) 100%
+    );
+    position: relative;
+    overflow: hidden;
+}
+
+.game-title {
+    text-align: center;
+    font-size: 3.2rem;
+    font-weight: 800;
+    margin-bottom: 4rem;
+}
+
+.game-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+}
+
+.player {
+    flex: 1;
+    text-align: center;
+    position: relative;
+}
+
+.player-avatar {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+}
+
+.player-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.player-name {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.score {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #0ea5ea 0%, #6366f1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 10px rgba(99, 102, 241, 0.3);
+    position: relative;
+}
+
+.basket {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: url('images/basket/篮框.webp') no-repeat center;
+    background-size: contain;
+}
+
+.ball {
+    width: 50px;
+    height: 50px;
+    background: url('images/basket/ball.png') no-repeat center;
+    background-size: contain;
+    position: absolute;
+    bottom: 120px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+.ball.charging {
+    filter: brightness(1.2);
+}
+
+/* 添加蓄力指示器 */
+.power-indicator {
+    position: absolute;
+    bottom: 0;
+    left: -20px;
+    width: 4px;
+    height: 0%;
+    background: #ffaa44;
+    border-radius: 2px;
+    transition: background-color 0.3s ease;
+}
+
+.game-info {
+    padding: 0 4rem;
+    text-align: center;
+}
+
+.timer {
+    font-family: 'SF Pro Display', -apple-system, sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.start-game {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    background: linear-gradient(135deg, #0ea5ea 0%, #6366f1 100%);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+    transform: translateY(0);
+}
+
+.start-game:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+}
+
+.start-game:active {
+    transform: translateY(1px);
+}
+
+.vs {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 2rem 0;
+    color: var(--primary-color);
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.vs::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    right: -20px;
+    height: 2px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 107, 107, 0.3) 50%,
+        transparent 100%
+    );
+    transform: translateY(-50%);
+}
+
+/* 更新游戏区域样式 */
+.game-area {
+    display: none;
+    position: relative;
+    width: 300px;
+    height: 400px;
+    margin: 1rem auto;
+}
+
+.game-area.active {
+    display: block;
+}
+
+.basket {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: url('images/basket/篮框.webp') no-repeat center;
+    background-size: contain;
+}
+
+.ball {
+    width: 45px;
+    height: 45px;
+    background: url('images/basket/ball.png') no-repeat center;
+    background-size: contain;
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    cursor: pointer;
+    z-index: 10;
+}
+
+.ball:active {
+    cursor: grabbing;
+}
+
+/* 游戏开始时隐藏部分元素 */
+.game-active .vs {
+    display: none;
+}
+
+.game-active .start-game {
+    display: none;
+}
+
+.timer {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* 添加皇冠样式 */
+.crown {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    background: url('images/crown.png') no-repeat center;
+    background-size: contain;
+    opacity: 0;
+    transition: all 0.5s ease;
+    z-index: 10;
+}
+
+.player-avatar {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 添加投篮线样式 */
+.throw-line {
+    position: absolute;
+    bottom: 100px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 1px;
+}
+
+/* 选中玩家样式 */
+.player {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+}
+
+.player::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(135deg, 
+        rgba(99, 102, 241, 0.1),
+        rgba(14, 165, 234, 0.1)
+    );
+    border-radius: 20px;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.player.selected {
+    transform: scale(1.05);
+}
+
+.player.selected::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* 添加选中时的呼吸动画 */
+.player.selected .player-avatar {
+    animation: avatarPulse 2s infinite ease-in-out;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+@keyframes avatarPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    }
+}
+
+/* 添加选中标记 */
+.player.selected::after {
+    content: '✓';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background: var(--accent-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    opacity: 0;
+    transform: scale(0) rotate(-180deg);
+    animation: checkmarkAppear 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes checkmarkAppear {
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+/* 调整游戏区域 */
+.game-area {
+    height: 600px;  /* 增加高度以适应抛物线 */
+}
+
+/* 优化球的样式 */
+.ball {
+    position: absolute;
+    bottom: 120px;  /* 位于投篮线上方 */
+    left: 50%;
+    transform: translate(-50%, 0);
+    cursor: grab;
+    z-index: 10;
+}
+
+.ball:active {
+    cursor: grabbing;
+}
+
+/* 游戏提示信息 */
+.game-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    pointer-events: none;
+    animation: messageAppear 1.5s ease forwards;
+}
+
+@keyframes messageAppear {
+    0% { opacity: 0; transform: translate(-50%, -30%); }
+    20% { opacity: 1; transform: translate(-50%, -50%); }
+    80% { opacity: 1; transform: translate(-50%, -50%); }
+    100% { opacity: 0; transform: translate(-50%, -70%); }
+}
+
+/* 进球特效 */
+.score-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #44ff44;
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(68, 255, 68, 0.5);
+    pointer-events: none;
+    animation: scorePopup 1s ease-out forwards;
+}
+
+@keyframes scorePopup {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 0) scale(0.5);
+    }
+    20% {
+        opacity: 1;
+        transform: translate(-50%, -100%) scale(1.2);
+    }
+    80% {
+        opacity: 1;
+        transform: translate(-50%, -120%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -150%) scale(0.8);
+    }
+}
+
+/* 篮框进球反馈 */
+.basket.score {
+    animation: basketShake 0.5s ease-out;
+}
+
+@keyframes basketShake {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    25% { transform: translate(-50%, -50%) scale(1.1) rotate(5deg); }
+    75% { transform: translate(-50%, -50%) scale(1.1) rotate(-5deg); }
+}
+
+/* 瞄准状态 */
+.ball.aiming {
+    cursor: none;
+    filter: brightness(1.2);
+}
+
+/* 瞄准辅助线 */
+.aiming-line {
+    position: absolute;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.5);
+    transform-origin: left center;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* 角色手臂动画 */
+.player-arm {
+    position: absolute;
+    width: 40px;
+    height: 80px;
+    background: #666;
+    transform-origin: top center;
+    transition: transform 0.1s ease;
+}
+
+/* 干扰动作动画 */
+.player.interfering {
+    animation: interference 0.5s ease-in-out;
+}
+
+@keyframes interference {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-30px); }
+}
+
+/* 投篮力度指示器 */
+.power-meter {
+    position: absolute;
+    left: -20px;
+    bottom: 0;
+    width: 4px;
+    height: 100px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.power-meter-fill {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(to top, #44ff44, #ffaa44, #ff4444);
+    transition: height 0.1s linear;
+}
+
+/* 点击特效 */
+.click-effect {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, 
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(255, 255, 255, 0.1) 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+    animation: clickPop 0.5s ease-out forwards;
+    z-index: 15;
+}
+
+@keyframes clickPop {
+    0% {
+        transform: scale(0.3);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* 篮球点击动画 */
+.ball.clicked {
+    animation: ballPulse 0.3s ease-out;
+    filter: brightness(1.2) contrast(1.1);
+}
+
+@keyframes ballPulse {
+    0% { transform: translate(-50%, 0) scale(1); }
+    50% { transform: translate(-50%, 0) scale(0.9); }
+    100% { transform: translate(-50%, 0) scale(1); }
+}
+
+/* 点击数量显示 */
+.click-count {
+    position: absolute;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #44ff44;
+    text-shadow: 0 0 5px rgba(68, 255, 68, 0.5);
+    pointer-events: none;
+    animation: countFloat 1s ease-out forwards;
+    z-index: 20;
+}
+
+@keyframes countFloat {
+    0% {
+        transform: translate(-50%, 0) scale(0.5);
+        opacity: 0;
+    }
+    20% {
+        transform: translate(-50%, -20px) scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50px) scale(1);
+        opacity: 0;
+    }
+}
+
+/* 点击波纹效果 */
+.ripple-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.ripple {
+    position: absolute;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    animation: rippleEffect 0.5s ease-out forwards;
+}
+
+@keyframes rippleEffect {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+    100% {
+        width: 100px;
+        height: 100px;
+        opacity: 0;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* 响应式调整 */
+@media (max-height: 800px) {
+    .game-section {
+        padding: 6rem 4rem;
+    }
+
+    .game-title {
+        font-size: 2.8rem;
+        margin-bottom: 2rem;
+    }
+
+    .game-area {
+        height: 350px;
+    }
+
+    .basket {
+        top: 35%;
+    }
+}
+
+/* 倒计时警告效果 */
+@keyframes timerWarning {
+    0%, 100% { color: #ff4444; transform: scale(1); }
+    50% { color: #ff0000; transform: scale(1.1); }
+}
+
+.timer.warning {
+    animation: timerWarning 0.5s ease-in-out infinite;
+}
+
+/* 玩家选择效果优化 */
+.player.selected {
+    transform: scale(1.05);
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 100%
+    );
+    border-radius: 20px;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+/* 游戏区域动画 */
+.game-area.active {
+    animation: gameAreaAppear 0.5s ease-out forwards;
+}
+
+@keyframes gameAreaAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 点击反馈优化 */
+.ball.clicked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, 
+        rgba(255, 255, 255, 0.8) 0%,
+        transparent 70%
+    );
+    transform: translate(-50%, -50%);
+    animation: clickGlow 0.5s ease-out;
+    pointer-events: none;
+}
+
+@keyframes clickGlow {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+    }
+}
+
+/* 开始按钮样式优化 */
+.start-game {
+    background: linear-gradient(135deg, #0ea5ea 0%, #6366f1 100%);
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+    transform: translateY(0);
+    transition: all 0.3s ease;
+}
+
+.start-game:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
+}
+
+.start-game:active {
+    transform: translateY(1px);
+}
+
+/* 计时器样式优化 */
+.timer {
+    font-family: 'SF Pro Display', -apple-system, sans-serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* 倒计时警告效果 */
+@keyframes timerWarning {
+    0%, 100% { color: #ff4444; transform: scale(1); }
+    50% { color: #ff0000; transform: scale(1.1); }
+}
+
+.timer.warning {
+    animation: timerWarning 0.5s ease-in-out infinite;
+}
+
+/* 玩家选择效果优化 */
+.player.selected {
+    transform: scale(1.05);
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 100%
+    );
+    border-radius: 20px;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+/* 游戏区域动画 */
+.game-area.active {
+    animation: gameAreaAppear 0.5s ease-out forwards;
+}
+
+@keyframes gameAreaAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* VS标志样式优化 */
+.vs {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.vs::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    right: -20px;
+    height: 2px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 107, 107, 0.3) 50%,
+        transparent 100%
+    );
+    transform: translateY(-50%);
+} 
