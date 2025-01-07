@@ -79,8 +79,8 @@ body {
 }
 
 .hero-text h1 {
-    font-size: 4.2rem;
-    line-height: 1.2;
+    font-size: 4.8rem;
+    line-height: 1.1;
     margin-bottom: 2rem;
     font-weight: 800;
     letter-spacing: -0.02em;
@@ -437,7 +437,7 @@ body {
     }
 
     .hero-text h1 {
-        font-size: 2.8rem;
+        font-size: 3.2rem;
     }
 
     .hero-cta {
@@ -593,6 +593,9 @@ body {
 .title-wrapper {
     position: relative;
     display: inline-block;
+}
+
+.title-wrapper .highlight-text {
     background: linear-gradient(
         135deg,
         #0ea5ea 0%,
@@ -602,46 +605,25 @@ body {
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    transition: all 0.3s ease;
-    font-weight: 900;
+    animation: gradientFlow 8s ease infinite;
 }
 
-/* 标题悬停效果 */
-.title-wrapper:hover {
-    background-position: right center;
-}
-
-/* 标题表情包样式 */
 .title-wrapper .emoji-popup {
     position: absolute;
-    top: -70px;
-    left: 50%;
-    transform: translateX(-50%) scale(0);
-    background: transparent;
-    padding: 8px;
-    opacity: 0;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    pointer-events: none;
-    z-index: 10;
-    width: 70px;
-    height: 70px;
+    top: -20px;
+    right: -40px;
+    transform: scale(0);
+    transition: transform 0.3s ease;
 }
 
 .title-wrapper:hover .emoji-popup {
-    opacity: 1;
-    transform: translateX(-50%) scale(1);
-    top: -80px;
-    animation: titleBounce 1.2s ease infinite;
+    transform: scale(1);
 }
 
-/* 标题表情动画 */
-@keyframes titleBounce {
-    0%, 100% {
-        transform: translateX(-50%) scale(1) rotate(-5deg);
-    }
-    50% {
-        transform: translateX(-50%) scale(1.1) rotate(5deg);
-    }
+.title-wrapper .emoji {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
 }
 
 /* 响应式调整 */
@@ -1941,4 +1923,293 @@ body {
         transparent 100%
     );
     transform: translateY(-50%);
+}
+
+/* 设计故事区域样式 */
+.design-section {
+    padding: 8rem 4rem;
+    background: linear-gradient(135deg, 
+        rgba(99, 102, 241, 0.1) 0%,
+        rgba(14, 165, 233, 0.1) 50%,
+        rgba(139, 92, 246, 0.1) 100%
+    );
+}
+
+.design-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.design-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.design-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24px;
+    padding: 2rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.design-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(14, 165, 233, 0.1),
+        rgba(99, 102, 241, 0.1)
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.design-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.15),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.design-card:hover::before {
+    opacity: 1;
+}
+
+.card-avatar {
+    height: 240px;  /* 增加图片高度 */
+}
+
+.hover-emoji {
+    width: 80px;  /* 调整表情包大小 */
+    height: 80px;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+
+.card-content h3 {
+    font-size: 1.8rem;  /* 增大标题字号 */
+    margin-bottom: 1.2rem;
+    background: linear-gradient(135deg, #0ea5ea 0%, #6366f1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+.card-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #4B5563;
+}
+
+/* 数据展示层样式 */
+.data-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.design-card:hover .data-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.data-item {
+    text-align: center;
+    color: white;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.design-card:hover .data-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.design-card:hover .data-item:nth-child(1) { transition-delay: 0.1s; }
+.design-card:hover .data-item:nth-child(2) { transition-delay: 0.2s; }
+.design-card:hover .data-item:nth-child(3) { transition-delay: 0.3s; }
+
+.data-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #0ea5ea 0%, #6366f1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.data-label {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+/* Banner 区域样式 */
+.banner-section {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, 
+        rgba(99, 102, 241, 0.05) 0%,
+        rgba(14, 165, 233, 0.05) 50%,
+        rgba(139, 92, 246, 0.05) 100%
+    );  /* 改为浅色渐变背景 */
+}
+
+.banner-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-image {
+    position: absolute;
+    bottom: -33vh;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    transform-origin: bottom center;
+    transform: perspective(1000px) rotateX(45deg);
+    will-change: transform;
+    z-index: 1;
+}
+
+.banner-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;  /* 提高图片透明度 */
+    filter: brightness(1) contrast(1.05);  /* 调整图片亮度和对比度 */
+}
+
+.banner-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 2rem;
+    color: var(--primary-color);  /* 文字改为深色 */
+    text-align: center;
+}
+
+.banner-content h2 {
+    font-size: 4rem;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.banner-content p {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateY(30px);
+    color: var(--text-color);  /* 段落文字改为灰色 */
+}
+
+.banner-content .highlight-text {
+    background: linear-gradient(135deg, #ff4d4d 0%, #ff8f00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.banner-cta {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    color: white;
+    background: linear-gradient(135deg, #0ea5ea 0%, #6366f1 100%);  /* 更改按钮渐变色 */
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.banner-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);  /* 调整阴影颜色 */
+}
+
+.banner-cta svg {
+    transition: transform 0.3s ease;
+}
+
+.banner-cta:hover svg {
+    transform: translateX(5px);
+}
+
+/* 添加视差效果容器 */
+.parallax-container {
+    position: relative;
+    height: 240px;
+    border-radius: 16px;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.parallax-image {
+    position: absolute;
+    bottom: -33%;  /* 初始位置在容器下方1/3处 */
+    left: 0;
+    width: 100%;
+    height: 133%;  /* 增加高度以适应视差效果 */
+    transform-origin: bottom center;
+    transform: perspective(1000px) rotateX(45deg);  /* 初始倾斜状态 */
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.parallax-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform-origin: bottom center;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 悬停效果 */
+.design-card:hover .parallax-image {
+    transform: perspective(1000px) rotateX(0deg) translateY(-20%);
+}
+
+/* 优化卡片阴影 */
+.design-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.15),
+        0 15px 25px rgba(0, 0, 0, 0.1);
 } 

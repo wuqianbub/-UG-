@@ -170,10 +170,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // 添加动画
         ripple.style.animation = 'rippleEffect 0.6s ease-out';
         
-        // 处理按钮点击逻辑
-        const workSection = document.querySelector('#work');
-        if (workSection) {
-            workSection.scrollIntoView({ behavior: 'smooth' });
+        // 修改：滚动到团队部分而不是work部分
+        const teamSection = document.querySelector('.team-section');
+        if (teamSection) {
+            teamSection.scrollIntoView({ behavior: 'smooth' });
         }
     });
 
@@ -531,4 +531,103 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 直接在主 DOMContentLoaded 事件处理程序的末尾调用 initGame
     initGame();
+
+    // 添加数字增长动画
+    function animateNumbers() {
+        const numbers = document.querySelectorAll('.data-number');
+        
+        numbers.forEach(number => {
+            const targetValue = parseInt(number.dataset.value);
+            const duration = 1500; // 动画持续时间（毫秒）
+            const steps = 60; // 动画步数
+            const stepValue = targetValue / steps;
+            let currentValue = 0;
+            let currentStep = 0;
+            
+            const interval = setInterval(() => {
+                currentStep++;
+                currentValue = Math.min(Math.round(stepValue * currentStep), targetValue);
+                number.textContent = currentValue;
+                
+                if (currentStep >= steps) {
+                    clearInterval(interval);
+                }
+            }, duration / steps);
+        });
+    }
+
+    // 监听卡片悬停事件
+    document.querySelector('.design-card').addEventListener('mouseenter', animateNumbers);
+
+    // Banner 视差滚动效果
+    const bannerImage = document.querySelector('.banner-image');
+    const bannerContent = document.querySelector('.banner-content');
+    
+    // 监听滚动事件
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const bannerSection = document.querySelector('.banner-section');
+        const sectionTop = bannerSection.offsetTop;
+        const sectionHeight = bannerSection.offsetHeight;
+        const windowHeight = window.innerHeight;
+        
+        // 检查是否在可视区域内
+        if (scrolled + windowHeight > sectionTop && 
+            scrolled < sectionTop + sectionHeight) {
+            
+            // 计算滚动进度 (0 到 1)
+            const progress = Math.min(
+                Math.max(
+                    (scrolled + windowHeight - sectionTop) / (sectionHeight + windowHeight),
+                    0
+                ),
+                1
+            );
+            
+            // 计算旋转角度（从45度到0度）
+            const rotation = 45 * (1 - progress);
+            
+            // 计算上移距离（从-33vh到0）
+            const translateY = -33 * (1 - progress);
+            
+            // 应用变换
+            bannerImage.style.transform = `
+                perspective(1000px) 
+                rotateX(${rotation}deg) 
+                translateY(${translateY}vh)
+            `;
+            
+            // 添加内容动画
+            if (progress > 0.5) {
+                gsap.to(bannerContent.children, {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.2,
+                    stagger: 0.2,
+                    ease: "power3.out"
+                });
+            }
+        }
+    });
+
+    // 添加滚动视差效果
+    function handleParallax() {
+        const card = document.querySelector('.design-card:last-child');
+        const parallaxImage = card.querySelector('.parallax-image');
+        const cardRect = card.getBoundingClientRect();
+        const scrollProgress = (window.innerHeight - cardRect.top) / (window.innerHeight + cardRect.height);
+        
+        if (scrollProgress > 0 && scrollProgress < 1) {
+            const rotation = 45 * (1 - scrollProgress);
+            const translateY = -33 * (1 - scrollProgress);
+            parallaxImage.style.transform = `
+                perspective(1000px) 
+                rotateX(${rotation}deg) 
+                translateY(${translateY}%)
+            `;
+        }
+    }
+
+    // 监听滚动事件
+    window.addEventListener('scroll', handleParallax);
 }); 
